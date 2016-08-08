@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Rubik</title>
+      <script src="scripts/jquery-3.1.0.min.js"></script>
+      <script src="scripts/gl-matrix-min.js"></script>
+      <script src="scripts/phoria-min.js"></script>
+      <script src='scripts/dat.gui.min.js'></script>
+      <script src='rubik.js'></script>
+      <script src='rubik-ui.js'></script>
+   </head>
+   
+   <body style="background-color: #bfbfbf">
+      <canvas id="canvas" width="600" height="400" style="background-color: #eee"></canvas>
+      <div id="rotate" style="position:absolute;left:10px;top:10px;">
+          <button>u</button>
+          <button>U</button><br>
+          <button>r</button>
+          <button>R</button><br>
+          <button>f</button>
+          <button>F</button><br>
+          <button>l</button>
+          <button>L</button><br>
+          <button>b</button>
+          <button>B</button><br>
+          <button>d</button>
+          <button>D</button><br>
+          <button>x</button>
+          <button>X</button><br>
+          <button>y</button>
+          <button>Y</button><br>
+          <button>z</button>
+          <button>Z</button>
+      </div>
+      <div>
+          <input type="text" id="command" style="width:300px;">
+          <button id="run">Run</button>
+          <button id="reset">Reset</button>
+          <button id="solve">Solve!</button>
+          <button id="randtest">random tests</button>
+      </div>
+      <div><textarea id="info" style="width:600px;height:300px;"></textarea></div>
+   </body>
+</html>
