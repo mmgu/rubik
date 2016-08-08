@@ -224,7 +224,7 @@ Rubik.prototype.getRandomCmd = function() {
     for (i = 0; i < n; i++)
         s += moveCmds[Math.floor(Math.random() * moveCmds.length)];
     return s;
-}
+};
 
 // find a block with specified colors
 Rubik.prototype.findBlock = function(block) {
@@ -400,7 +400,7 @@ function countColor(color, c1, c2, c3, c4) {
 
 // make all top colors correct
 Rubik.prototype.solveL3TopColors = function(solution) {
-	var color = this.oYo[1], i;
+	var color = this.oYo[1];
 	this.solveL3cross(solution);
 
 	if (this.XYz[1] != color || this.XYZ[1] != color ||
@@ -487,8 +487,8 @@ Rubik.prototype.solveL3 = function(solution) {
 	return this;
 };
 
-Rubik.prototype.solve = function(solution) {
-	return this.solveL1(solution)
+Rubik.prototype.solve = function (solution) {
+	 return this.solveL1(solution)
 		.run('xx', solution)
 		.solveL2(solution)
 		.solveL3(solution);

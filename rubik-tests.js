@@ -1,7 +1,7 @@
 ﻿//
 // run tests by "qunit -c rubik.js -t rubik-tests.js [--timeout 10000]"
 //
-;(function(QUnit) {
+;(function(QUnit, Rubik) {
 
 'use strict';
 
@@ -171,4 +171,4 @@ QUnit.test("solve random", function(assert) {
 });
 */
 
-})(QUnit);
+})(QUnit, global.Rubik);
