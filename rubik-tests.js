@@ -97,7 +97,7 @@ QUnit.test("solveL1corner", function(assert) {
 
 QUnit.test("solveL1", function(assert) {
 	var r = new Rubik();
-	var blocks = ['oYz', 'oYZ', 'xYo', 'XYo', 'oYo', 'xYz', 'XYz', 'XYZ', 'xYZ'];
+	var blocks = ['oyz', 'oyZ', 'xyo', 'Xyo', 'oyo', 'xyz', 'Xyz', 'XyZ', 'xyZ'];
 	assert.ok(r.init().run('urfldbRRL').solveL1().equalAt(r0, blocks), "1");
 	assert.ok(r.init().run('ruRurUUR').solveL1().equalAt(r0, blocks), "2");
 	assert.ok(r.init().run('LfLBBlFLBBLL').solveL1().equalAt(r0, blocks), "3");
@@ -106,26 +106,26 @@ QUnit.test("solveL1", function(assert) {
 
 QUnit.test("solveL2Xoz", function(assert) {
 	var r = new Rubik();
-	assert.ok(r.init().run('urfldbRRL').solveL1().run('xx').solveL2Xoz().run('xx').equalAt(r0, 'XoZ'), "1");
-	assert.ok(r.init().run('ruRurUUR').solveL1().run('xx').solveL2Xoz().run('xx').equalAt(r0, 'XoZ'), "2");
-	assert.ok(r.init().run('LfLBBlFLBBLL').solveL1().run('xx').solveL2Xoz().run('xx').equalAt(r0, 'XoZ'), "3");
-	assert.ok(r.init().run('rufUdlb').solveL1().run('xx').solveL2Xoz().run('xx').equalAt(r0, 'XoZ'), "4");
+	assert.ok(r.init().run('urfldbRRL').solveL1().solveL2Xoz().equalAt(r0, 'Xoz'), "1");
+	assert.ok(r.init().run('ruRurUUR').solveL1().solveL2Xoz().equalAt(r0, 'Xoz'), "2");
+	assert.ok(r.init().run('LfLBBlFLBBLL').solveL1().solveL2Xoz().equalAt(r0, 'Xoz'), "3");
+	assert.ok(r.init().run('rufUdlb').solveL1().solveL2Xoz().equalAt(r0, 'Xoz'), "4");
 });
 
 QUnit.test("solveL2", function(assert) {
 	var r = new Rubik();
 	var blocks = ['ooz', 'ooZ', 'xoo', 'Xoo', 'xoz', 'Xoz', 'XoZ', 'xoZ'];
-	assert.ok(r.init().run('urfldbRRL').solveL1().run('xx').solveL2().run('xx').equalAt(r0, blocks), "1");
-	assert.ok(r.init().run('ruRurUUR').solveL1().run('xx').solveL2().run('xx').equalAt(r0, blocks), "2");
-	assert.ok(r.init().run('LfLBBlFLBBLL').solveL1().run('xx').solveL2().run('xx').equalAt(r0, blocks), "3");
-	assert.ok(r.init().run('rufUdlb').solveL1().run('xx').solveL2().run('xx').equalAt(r0, blocks), "4");
+	assert.ok(r.init().run('urfldbRRL').solveL1().solveL2().equalAt(r0, blocks), "1");
+	assert.ok(r.init().run('ruRurUUR').solveL1().solveL2().equalAt(r0, blocks), "2");
+	assert.ok(r.init().run('LfLBBlFLBBLL').solveL1().solveL2().equalAt(r0, blocks), "3");
+	assert.ok(r.init().run('rufUdlb').solveL1().solveL2().equalAt(r0, blocks), "4");
 });
 
 QUnit.test("solveL3cross", function(assert) {
 	var r = new Rubik();
 	var s = [ 'ufRR', 'ldBRR', 'LLbuFFdr', 'urfldbRRL', 'ruRurUUR', 'LfLBBlFLBBLL', 'rufUdlb' ];
 	for (var i = 0; i < s.length; i++) {
-		r.init().run(s[i]).solveL1().run('xx').solveL2().solveL3cross();
+		r.init().run(s[i]).solveL1().solveL2().solveL3cross();
 		var color = r.oYo[1];
 		assert.ok(r.oYz[1] == color && r.oYZ[1] == color &&	r.XYo[1] == color && r.xYo[1] == color, "1");
 	}
@@ -135,7 +135,7 @@ QUnit.test("solveL3TopColors", function(assert) {
 	var r = new Rubik();
 	var s = [ 'ufRR', 'ldBRR', 'LLbuFFdr', 'urfldbRRL', 'ruRurUUR', 'LfLBBlFLBBLL', 'rufUdlb' ];
 	for (var i = 0; i < s.length; i++) {
-		r.init().run(s[i]).solveL1().run('xx').solveL2().solveL3TopColors();
+		r.init().run(s[i]).solveL1().solveL2().solveL3TopColors();
 		var color = r.oYo[1];
 		assert.ok(r.XYz[1] == color && r.XYZ[1] == color && r.xYz[1] == color && r.xYZ[1] == color &&
 			r.oYz[1] == color && r.oYZ[1] == color && r.XYo[1] == color && r.xYo[1] == color, "1");
@@ -147,7 +147,7 @@ QUnit.test("solveL3", function(assert) {
 	var s = [ 'ufRR', 'ldBRR', 'LLbuFFdr', 'urfldbRRL', 'ruRurUURY', 'LfLBBlFLBBLL',
 			'rufUdlb', 'BUuLLuRRRLF' ];
 	for (var i = 0; i < s.length; i++) {
-		r.init().run(s[i]).solveL1().run('xx').solveL2().solveL3().run('xx');
+		r.init().run(s[i]).solve();
 		assert.ok(r.equalTo(r0) ||
 				r.run('Y').equalTo(r0) ||
 				r.run('Y').equalTo(r0) ||
@@ -161,7 +161,7 @@ QUnit.test("solve random", function(assert) {
 	var r = new Rubik(), s;
 	for (var i = 0; i < 1000; i++) {
 		s = r.getRandomCmd();
-		r.init().run(s).solveL1().run('xx').solveL2().solveL3().run('xx');
+		r.init().run(s).solve();
 		assert.ok(r.equalTo(r0) ||
 				r.run('Y').equalTo(r0) ||
 				r.run('Y').equalTo(r0) ||

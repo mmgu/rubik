@@ -327,7 +327,10 @@ Rubik.prototype.solveL1corner = function(solution) {
 };
 
 Rubik.prototype.solveL1 = function(solution) {
-	return this.solveL1cross(solution).solveL1corner(solution);
+	return this.run('xx', solution)
+			.solveL1cross(solution)
+			.solveL1corner(solution)
+			.run('xx', solution);
 };
 
 var moveL2EdgeToL3SolutionMap = {
@@ -488,10 +491,17 @@ Rubik.prototype.solveL3 = function(solution) {
 };
 
 Rubik.prototype.solve = function (solution) {
-	 return this.solveL1(solution)
-		.run('xx', solution)
+	this.solveL1(solution)
 		.solveL2(solution)
 		.solveL3(solution);
+	if (solution) {
+		solution.cmd = solution.cmd
+			.replace(/([xXyYzZuUdDbBlLfFrR])\1\1\1/g, '')
+			.replace(/([xXyYzZuUdDbBlLfFrR])\1\1\1/g, '')
+			.replace(/rR|Rr|xX|Xx|yY|Yy|zZ|Zz|uU|Uu|dD|Dd|bB|Bb|lL|Ll|fF|Ff|rR|Rr/g, '')
+			.replace(/[xXyYzZ]+$/, '');
+	}
+	return this;
 };
 
 // the only symbol exported to global namespace
